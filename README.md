@@ -1,0 +1,102 @@
+<h1 align="center">nestjs-configure-after</h1>
+
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/nestjs-configure-after">
+    <img alt="npm" src="https://img.shields.io/npm/v/nestjs-configure-after" />
+  </a>
+  <a href="https://travis-ci.org/iamolegga/nestjs-configure-after">
+    <img alt="Travis (.org)" src="https://img.shields.io/travis/iamolegga/nestjs-configure-after" />
+  </a>
+  <a href="https://coveralls.io/github/iamolegga/nestjs-configure-after?branch=master">
+    <img alt="Coverage Status" src="https://coveralls.io/repos/github/iamolegga/nestjs-configure-after/badge.svg?branch=master" />
+  </a>
+  <img alt="Supported platforms: Express & Fastify" src="https://img.shields.io/badge/platforms-Express%20%26%20Fastify-green" />
+</p>
+<p align="center">
+  <a href="https://snyk.io/test/github/iamolegga/nestjs-configure-after">
+    <img alt="Snyk Vulnerabilities for npm package" src="https://img.shields.io/snyk/vulnerabilities/npm/nestjs-configure-after" />
+  </a>
+  <a href="https://david-dm.org/iamolegga/nestjs-configure-after">
+    <img alt="Dependencies status" src="https://badgen.net/david/dep/iamolegga/nestjs-configure-after">
+  </a>
+  <img alt="Dependabot" src="https://badgen.net/dependabot/iamolegga/nestjs-configure-after/?icon=dependabot">
+  <a href="https://codeclimate.com/github/iamolegga/nestjs-configure-after">
+    <img alt="Maintainability" src="https://badgen.net/codeclimate/maintainability/iamolegga/nestjs-configure-after">
+  </a>
+</p>
+
+Using NestJS?
+
+Have middlewares that are set in `configure(consuer: MiddlewareConsumer) {}` of it's module?
+
+Want to controll order of execution of this middlewares?
+
+## Install
+
+```sh
+npm i nestjs-configure-after
+```
+
+or
+
+```sh
+yarn add nestjs-configure-after
+```
+
+## Example
+
+Let's imagine we have ModuleA, ModuleB and ModuleC, and each has own middleares setup. And we want middleware to be set in right order, like: A -> B -> C. By default NestJS does not provide the way to set the order. But with this module it's very easy:
+
+```ts
+import { After } from 'nestjs-configure-after'
+
+@Module({})
+//
+// Empty if independent
+//
+@After()
+class ModuleA {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(FirstMiddleware)
+      .forRoutes('*');
+  }
+}
+
+@Module({})
+//
+// Pass module that should configure it's middlewares
+// before the current one
+//
+@After(ModuleA)
+class ModuleB {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(SecondMiddlewareThatShouldBeExecutedAfterTheFirstOne)
+      .forRoutes('*');
+  }
+}
+
+@Module({})
+//
+// ...Or even pass several modules
+//
+@After(ModuleA, ModuleB)
+class ModuleC {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(TheLastMiddleware)
+      .forRoutes('*');
+  }
+}
+
+@Module({
+  // And for now it does not matter in which
+  // order modules are set in `imports` field
+  // Middlewares will be setup in the right order.
+  imports: [ModuleC, ModuleA, ModuleB, ...],
+  controllers: [...]
+})
+class App {}
+```

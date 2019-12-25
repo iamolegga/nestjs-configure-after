@@ -1,0 +1,25 @@
+language: node_js
+cache:
+  directories:
+    - node_modules
+notifications:
+  email: false
+node_js:
+  - '12'
+deploy:
+  skip_cleanup: true
+  on:
+    repo: iamolegga/nestjs-configure-after
+    branch: master
+  provider: npm
+  email: iamolegga@gmail.com
+  api_key:
+    secure: YCkDvcS/PUtIxgMCuF4Wkr1mfvvutviRfl3u5Z1neeq5msiLcPLNtVz+pnaLFDJRmkl5CPPTRQZpx09ZksHmgmY1jrZ79YIEfFeOQWBmQwbOcuQURCkasWOK56cZ0DkEX8eFvLSFRx1rSHgdH4enRhy6CLim/F+1TZ46OItGytR+vqorRvTRHSE06+WCDORwfTlS02ilmQIDAk3MA7IrUNG2Vc0TE+R9SGPH2kuIcwhfa4x3I2jwEwxpFbKpTVTzE+fovSnLda7xAYBNf6q6D/VcuLsP0xGqBBkMGj6wj/YL2d5I8WIUYNXf4FHLqKGab2WTN34kYjlwNz4d78zrJeJzInkJHCpI3PmpPTVD923Dmy5TSqWdNIx90M1paQMz50V77KMV1yAvdKZcZMQalhRYy6Qxo5uadksbafEgRJb56/xz1MgOwQ+z4B1GRGamoNdJintVDf+1NR4k8djMeuuJMKe4SmX1AIJWA4cJZv20RfREsR7b5Hhe/ZVGIZYlGSrDWJ0U82hs39f4A57htHmixaRwdP2NUoKO4fHUVR4Lo6H5rDrX7xfM4vlW88gDxXTDJh1lgILLhBtzD5CAclbX3btIHGK4CyK/vQUC8S3nthr/NyxbMC9WK1XWFBobWrezlRXZnWgkG+c+0mAn/8b4xeTs9AwVYoCROtDG21Y=
+script:
+  - npm run build
+  - npm run test
+after_deploy:
+  - npm run report
+branches:
+  except:
+    - "/^v\\d+\\.\\d+\\.\\d+$/"
