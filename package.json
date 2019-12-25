@@ -1,0 +1,71 @@
+{
+  "name": "nestjs-configure-after",
+  "version": "0.1.0",
+  "description": "Order NestJS middlewares execution",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest --verbose",
+    "build": "rm -rf ./dist && tsc --p tsconfig.build.json",
+    "report": "cat ./coverage/lcov.info | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamolegga/nestjs-configure-after.git"
+  },
+  "keywords": [
+    "nest",
+    "nestjs",
+    "middleware",
+    "module",
+    "configure",
+    "MiddlewareConsumer",
+    "consumer",
+    "order",
+    "after"
+  ],
+  "author": "Oleg Repin <iamolegga@gmail.com> (http://github.com/iamolegga)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iamolegga/nestjs-configure-after/issues"
+  },
+  "homepage": "https://github.com/iamolegga/nestjs-configure-after#readme",
+  "devDependencies": {
+    "@nestjs/common": "^6.10.12",
+    "@nestjs/core": "^6.10.12",
+    "@nestjs/platform-express": "^6.10.12",
+    "@nestjs/platform-fastify": "^6.10.12",
+    "@types/jest": "^24.0.24",
+    "@types/node": "^13.1.0",
+    "@types/supertest": "^2.0.8",
+    "coveralls": "^3.0.9",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.3",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.2.0",
+    "tslint": "^5.20.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.1.0",
+    "typescript": "^3.7.4"
+  },
+  "peerDependencies": {
+    "@nestjs/core": "^6.0.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "ts"
+    ],
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage",
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "testEnvironment": "node"
+  }
+}
