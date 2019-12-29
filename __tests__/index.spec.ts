@@ -8,16 +8,7 @@ let order = '';
 
 @Module({})
 @After()
-class ModuleA {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply((_req: any, _res: any, next: () => void) => {
-        order += 'A';
-        next();
-      })
-      .forRoutes('*');
-  }
-}
+class ModuleA {}
 
 // tslint:disable-next-line: max-classes-per-file
 @Module({})
@@ -55,7 +46,7 @@ for (const adapter of platforms) {
       for (const combination of combinations) {
         order = '';
         const result = await requestAppWith(combination, adapter, () => order);
-        expect(result.order).toBe('ABC');
+        expect(result.order).toBe('BC');
       }
     });
   });

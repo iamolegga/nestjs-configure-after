@@ -24,6 +24,8 @@ export function After(...depModules: Array<Type<{}>>) {
         }
         if (super.configure) {
           await super.configure(consumer);
+        } else {
+          await Promise.resolve();
         }
         e.emit(constructor.name);
       }
