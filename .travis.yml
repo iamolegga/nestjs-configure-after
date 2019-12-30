@@ -8,9 +8,9 @@ node_js:
   - '12'
 deploy:
   edge: true
-  tags: true
   skip_cleanup: true
   on:
+    tags: true
     repo: iamolegga/nestjs-configure-after
     branch: master
   provider: npm
