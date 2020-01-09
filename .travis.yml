@@ -10,7 +10,6 @@ deploy:
   edge: true
   skip_cleanup: true
   on:
-    tags: true
     repo: iamolegga/nestjs-configure-after
     branch: master
   provider: npm
