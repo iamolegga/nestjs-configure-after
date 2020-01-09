@@ -4,14 +4,15 @@ notifications:
 node_js:
   - '12'
 deploy:
-  skip_cleanup: true
+  cleanup: false
+  edge: true
   on:
     repo: iamolegga/nestjs-configure-after
-    branch: master
+    tags: true
   provider: npm
   email: iamolegga@gmail.com
-  api_key:
-    secure: AZ0QBjpP5/l8KCsw+dL+Pj2FRhu1D6HNW/+AGd/nCeGMvRINISak8EkRkJkrsDGS/73UpH3JJ2W53vimp5ibTo/LQPzSyjpzoIhStpmgLsaqncZUVxUpkbBSUcm94B29nkrwDfKY8fNcth9S4d5niXi9jqK3jejOLhAtIkKWqfQUdHXXTS6gXxQ/rwM7tzH9iJR2Z/cDJOlhbb+GfJY4/4UPXE7O2/mwippNivq1uIHCeVHf86rkDRG1bOn6wcLyGibVME+hxkvFSb6pvNk8QsFXcySp0uMYyJBClT8D5Xl8Uoc6PQvlKGajWdGFxj5GoseCLdhQsi2cWMiuzKqA/LPXhQdEtltfs92LFRMy1bc7d9izM6g7qcznWH9213sdgz5CFTR4r7ivcNwUq7SXPRAEc1t7twMwg/+a1HkBRgR2I8+rUo/K7QjPnYIGsXwZMHzQVjhjlncxgozaoDeFQqnlEL6RGyO1Q/CW5qbExW442LEiefXTJaxSVeJZMRQNV4+BP4cB4RyZyZkeLA51/kP0koTOI7xhtV2NztlRrVF0lyWexVOemAC6d8v75rLbfJCzrjLa++YFBiiPHekDkcPNmWu18VBx/lXMDmVn736bF6btKgMh8aPLOBer/1ipnWhI9rp1SL5MYhc8ZarWDUuXWupKBYrR6r1jnNS4res=
+  api_token:
+    secure: BCMkhYHMjWQ6Xa9Hj6pwc2TAu3Y8lLY/5Idak9QLOJ5ABNXaW6bF2kfwYdJQhX7KkEqUXP3qI+QNZFphMc9OSjbq1BQpv7lalzuvO3IZMqHbx7RXn9odDpw6S6RTFnBBiEAc9n5qyWCsHFXhIRJRBOcERuawvF3fizIdGaQqxd0ZmkLgm3txORzWkiMA/4BoyRIBWUI6DS+IG18jEcfOBMDwtiuVMEXJ03ou8dyGG/5eYbkJl4kMDf3UGPN9zoXIx8yQTloaW7NlCmERtvkPwQyDDSspNpUry1QPDdd6eXRCphFS98fRJ7Bui6gQgGMSPTBANZcMKNP0g9gvr2TZJIXy5dT/s9vc/sfJeXQ8yZ6UUHeQmoSl8JvwLtjwlqHfLXeTCFsFq+j+Xjku4HtBSq4r61xfjmYVI4YruHcCskLW462asLR+67OUwKL7JKg7Agg/w8urZQ0uZRtnupoE8L8xN7B3+MxSqUvw/vAsbi6/uw2ounabDyO+fjwrDaZ4AnY3/yA08W9FKQ7GGnp0OlGtDY43Cn4mfAdPL4i/hNvIXwj8NfbS2LV6YgvgjKjRMfmEP+4ucAmb79oBluxM/bg9DrJ1k1WGBF1lHHXa5ZcJ6m03PxU8qXbPR5R23DTHNxFav2rV+QNf+gcRT4vhBaMqK8itfUY3j7zYC5pEawk=
 script:
   - npm run build
   - npm run test
