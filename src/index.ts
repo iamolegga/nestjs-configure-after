@@ -1,5 +1,5 @@
-import { MiddlewareConsumer, Type } from '@nestjs/common';
 import { EventEmitter } from 'events';
+import { MiddlewareConsumer, Type } from '@nestjs/common';
 
 const e = new EventEmitter();
 
@@ -15,11 +15,11 @@ interface Configured {
  */
 export function After(...depModules: Array<Type<{}>>) {
   return <T extends Type<Configured>>(constructor: T) => {
-    return class extends constructor {
+    const decorated = class extends constructor {
       async configure(consumer: MiddlewareConsumer) {
         if (depModules.length) {
           await Promise.all(
-            depModules.map(m => new Promise(r => e.once(m.name, r))),
+            depModules.map((m) => new Promise((r) => e.once(m.name, r))),
           );
         }
         if (super.configure) {
@@ -30,5 +30,8 @@ export function After(...depModules: Array<Type<{}>>) {
         e.emit(constructor.name);
       }
     };
+    // https://github.com/microsoft/TypeScript/issues/37157
+    Object.defineProperty(decorated, 'name', { value: constructor.name });
+    return decorated;
   };
 }

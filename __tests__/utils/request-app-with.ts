@@ -17,7 +17,6 @@ export async function requestAppWith(
     }
   }
 
-  // tslint:disable-next-line: max-classes-per-file
   @Module({
     imports: modules,
     controllers: [TestController],
