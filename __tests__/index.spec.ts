@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { After } from '../src';
 import { permute } from './utils/permute';
 import { platforms } from './utils/platforms';
@@ -10,10 +10,9 @@ let order = '';
 @After()
 class ModuleA {}
 
-// tslint:disable-next-line: max-classes-per-file
 @Module({})
 @After(ModuleA)
-class ModuleB {
+class ModuleB implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply((_req: any, _res: any, next: () => void) => {
@@ -24,10 +23,9 @@ class ModuleB {
   }
 }
 
-// tslint:disable-next-line: max-classes-per-file
 @Module({})
 @After(ModuleA, ModuleB)
-class ModuleC {
+class ModuleC implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply((_req: any, _res: any, next: () => void) => {
@@ -40,14 +38,21 @@ class ModuleC {
 
 const combinations = permute([ModuleA, ModuleB, ModuleC]);
 
-for (const adapter of platforms) {
-  describe(adapter.name, () => {
-    it('should work in any order', async () => {
+describe('should work', () => {
+  for (const adapter of platforms) {
+    describe(adapter.name, () => {
+      let i = 0;
       for (const combination of combinations) {
-        order = '';
-        const result = await requestAppWith(combination, adapter, () => order);
-        expect(result.order).toBe('BC');
+        it(`combination ${++i}`, async function () {
+          order = '';
+          const result = await requestAppWith(
+            combination,
+            adapter,
+            () => order,
+          );
+          expect(result.order).toBe('BC');
+        });
       }
     });
-  });
-}
+  }
+});
