@@ -5,10 +5,10 @@ export function permute<T>(input: T[]) {
     const rest = permute(input.slice(0, i).concat(input.slice(i + 1)));
 
     if (!rest.length) {
-      ret.push([input[i]]);
+      ret.push([input[i]!]);
     } else {
       for (const el of rest) {
-        ret.push([input[i]].concat(el));
+        ret.push(<T[]>[input[i]].concat(el));
       }
     }
   }

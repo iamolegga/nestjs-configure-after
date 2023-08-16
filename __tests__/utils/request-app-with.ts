@@ -1,12 +1,13 @@
 import { Controller, Get, Module, Type } from '@nestjs/common';
 import { ModuleMetadata } from '@nestjs/common/interfaces';
 import { AbstractHttpAdapter, NestFactory } from '@nestjs/core';
-import * as request from 'supertest';
+import request from 'supertest';
+
 import { fastifyExtraWait } from './fastify-extra-wait';
 
 export async function requestAppWith(
   modules: ModuleMetadata['imports'],
-  Adapter: Type<AbstractHttpAdapter<any, any, any>>,
+  Adapter: Type<AbstractHttpAdapter<unknown, unknown, unknown>>,
   getOrder: () => string,
 ) {
   @Controller('/')
