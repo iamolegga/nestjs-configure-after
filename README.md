@@ -24,7 +24,7 @@
 
 Using NestJS?
 
-Do you have middlewares set via `configure(consuer: MiddlewareConsumer) {}` and want to control the order of execution of these middlewares?
+Do you have middlewares set via `configure(consumer: MiddlewareConsumer) {}` and want to control the order of execution of these middlewares?
 
 ## Install
 
