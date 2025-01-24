@@ -1,6 +1,6 @@
 {
   "name": "nestjs-configure-after",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Order NestJS middlewares execution",
   "main": "index.js",
   "types": "index.d.ts",
