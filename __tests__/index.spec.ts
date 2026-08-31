@@ -1,4 +1,8 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import {
+  type MiddlewareConsumer,
+  Module,
+  type NestModule,
+} from '@nestjs/common';
 
 import { After } from '../src';
 
@@ -46,7 +50,7 @@ describe('should work', () => {
       for (const combination of combinations) {
         it(`combination ${combination
           .map((m) => m.name)
-          .join(' -> ')}`, async function () {
+          .join(' -> ')}`, async () => {
           order = '';
           const result = await requestAppWith(
             combination,

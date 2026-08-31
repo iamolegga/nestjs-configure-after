@@ -8,10 +8,10 @@
     <img alt="npm" src="https://img.shields.io/npm/dm/nestjs-configure-after" />
   </a>
   <a href="https://github.com/iamolegga/nestjs-configure-after/actions">
-    <img alt="GitHub branch checks state" src="https://badgen.net/github/checks/iamolegga/nestjs-configure-after">
+    <img alt="GitHub branch checks state" src="https://badgen.net/github/checks/iamolegga/nestjs-configure-after/master">
   </a>
-  <a href="https://codeclimate.com/github/iamolegga/nestjs-configure-after/test_coverage">
-    <img src="https://api.codeclimate.com/v1/badges/c60f33b6ad5f9e96d358/test_coverage" />
+  <a href="https://qlty.sh/gh/iamolegga/projects/nestjs-configure-after">
+    <img src="https://qlty.sh/gh/iamolegga/projects/nestjs-configure-after/coverage.svg" alt="Code Coverage" />
   </a>
   <a href="https://snyk.io/test/github/iamolegga/nestjs-configure-after">
     <img alt="Known Vulnerabilities" src="https://snyk.io/test/github/iamolegga/nestjs-configure-after/badge.svg" />
@@ -25,6 +25,17 @@
 Using NestJS?
 
 Do you have middlewares set via `configure(consumer: MiddlewareConsumer) {}` and want to control the order of execution of these middlewares?
+
+---
+
+<p align="center"><b>This is the documentation for v5. Compatibility with earlier versions:</b></p>
+
+| nestjs-configure-after | NestJS       | Node.js |
+| ---------------------- | ------------ | ------- |
+| v5                     | 11, 12       | >=22.12 |
+| [v4](https://github.com/iamolegga/nestjs-configure-after/tree/4.0.0#readme) | 8, 9, 10, 11 | >=18 |
+
+---
 
 ## Install
 

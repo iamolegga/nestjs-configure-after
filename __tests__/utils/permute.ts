@@ -1,14 +1,14 @@
 export function permute<T>(input: T[]) {
   const ret: T[][] = [];
 
-  for (let i = 0; i < input.length; i = i + 1) {
+  for (const [i, item] of input.entries()) {
     const rest = permute(input.slice(0, i).concat(input.slice(i + 1)));
 
     if (!rest.length) {
-      ret.push([input[i]!]);
+      ret.push([item]);
     } else {
       for (const el of rest) {
-        ret.push(<T[]>[input[i]].concat(el));
+        ret.push([item].concat(el));
       }
     }
   }
