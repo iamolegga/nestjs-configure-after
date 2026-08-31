@@ -1,6 +1,14 @@
-import { Controller, Get, Module, Type } from '@nestjs/common';
-import { ModuleMetadata } from '@nestjs/common/interfaces';
-import { AbstractHttpAdapter, NestFactory } from '@nestjs/core';
+// `@nestjs/common/interfaces` is no longer a resolvable subpath under the
+// NestJS 12 exports map; `ModuleMetadata` is re-exported from the package root
+// on both 11 and 12.
+import {
+  Controller,
+  Get,
+  Module,
+  type ModuleMetadata,
+  type Type,
+} from '@nestjs/common';
+import { type AbstractHttpAdapter, NestFactory } from '@nestjs/core';
 import request from 'supertest';
 
 import { fastifyExtraWait } from './fastify-extra-wait';

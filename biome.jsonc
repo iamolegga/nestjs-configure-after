@@ -1,0 +1,16 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.11/schema.json",
+  "formatter": { "indentStyle": "space" },
+  "javascript": {
+    "formatter": { "quoteStyle": "single" }
+  },
+  "overrides": [
+    {
+      // `platforms.ts` puts the express and fastify adapters into one array,
+      // and their `AbstractHttpAdapter` generics have nothing in common, so
+      // the test helpers erase them to `any` on purpose.
+      "includes": ["__tests__/**"],
+      "linter": { "rules": { "suspicious": { "noExplicitAny": "off" } } }
+    }
+  ]
+}

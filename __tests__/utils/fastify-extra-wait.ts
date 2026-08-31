@@ -1,7 +1,7 @@
-import { INestApplication } from '@nestjs/common';
+import type { INestApplication } from '@nestjs/common';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
 
-import { Adapter } from './platforms';
+import type { Adapter } from './platforms';
 
 // issue with fastify testing, requires extra check for readiness
 // https://github.com/nestjs/nest/issues/1817#issuecomment-484217002
